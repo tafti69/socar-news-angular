@@ -124,7 +124,7 @@ export class AdminComponent implements OnInit {
   }
 
   deleteNews(id: any) {
-    console.log(id);
+    console.log(id, "aa");
     console.log(localStorage.getItem('token'));
     
     this.service.deleteNews(id).subscribe(res => {
