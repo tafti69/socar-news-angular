@@ -1,0 +1,69 @@
+<div class="form-block">
+    <form [formGroup]="form" (ngSubmit)="onHandleSubmit()">
+        <div class="multi-lang">
+            <div class="admin-ge">
+                <div class="form-group">
+                    <label for="name">Heading AZ <span style="color:red;">*</span></label>
+                    <input id="HeadingAZ" formControlName="HeadingAZ" class="input-block"/>
+                </div>
+                <div class="form-group">
+                    <label for="name">Content AZ <span style="color:red;">*</span></label>
+                    <textarea id="ContentAZ" formControlName="ContentAZ" class="text-area-block"></textarea>
+                </div>
+            </div>
+            <div class="admin-az">
+                <div class="form-group">
+                    <label for="name">Heading KA <span style="color:red;">*</span></label>
+                    <input id="HeadingAZ" formControlName="HeadingGE" class="input-block" />
+                </div>
+                <div class="form-group">
+                    <label for="name">Content KA <span style="color:red;">*</span></label>
+                    <textarea id="ContentKA" formControlName="ContentGE" class="text-area-block"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row-block">
+            <div class="button-wrapper">
+                <span class="label">
+                  Upload File
+                </span>
+                  <input type="file" name="upload" id="upload" class="upload-box" formControlName="ImageURL" (change)="handleUpload($event)" placeholder="Upload File"> 
+              </div>
+              <div>{{form.value.ImageURL}}</div>
+        </div>
+       <div class="flex-row-block">
+        <button [disabled]="!form.valid" type="submit" class="admin-btn">{{buttonState ? 'Update' : 'Create'}}</button>
+        <div (click)="refreshForm()" class="refresh"><img src="/assets/bx-refresh.svg" alt=""></div>
+       </div>
+        <div class="error-msg">
+<!--          
+            <p *ngIf="!form.valid" class="err-msg" style="color:red;">Error</p> -->
+            
+        </div>
+    </form>
+</div>
+
+<hr/>
+<br/>
+
+<div *ngIf="isLoading" class="loader"></div>
+
+<div class="body-container">
+    <div  *ngFor="let item of news; index as i;" class="container">
+      <div class="image-container">
+        <img src={{item.content[0].imageURL}}>
+        <span class="date-time">{{item.content[0].createdAt}}</span>
+       </div>
+        <div class="text-container">
+          <h1>{{item.content[0].title}}</h1>
+          <p>{{item.content[0].description| slice: 0:450}}</p>
+          <div class="edit">
+            <svg (click)="updateNews(item, item.id)" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" style="fill: rgb(21, 21, 21); cursor: pointer;"><path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path><path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path></svg>
+            <svg (click)="deleteNews(item.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" style="fill: rgb(21, 21, 21); margin-left: 12px; cursor: pointer;">
+                <path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path>
+                <path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
+          </div>
+        </div>
+    </div>
+   <hr/>
+</div>

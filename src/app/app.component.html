@@ -1,0 +1,68 @@
+<header>
+ <div class="header-container">
+ <a [routerLink]="['/']"> <img src="/assets/aaa.svg" alt=""></a>
+ <a [routerLink]="['/']"> <img src="/assets/ddd.png" alt=""></a>
+  <div class="header-text">
+      <p (click)='showDialog()'>Contact Us</p>
+      <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span>
+  </div>
+ </div>
+</header>
+
+
+<div *ngIf="show" class="contact-us-page">
+    <div class="form-heading">
+        <h3>Your Ideas</h3>
+        <div style="cursor: pointer;" class="close" (click)="show = false">x</div>
+    </div>
+    <div class="inModal">
+        <div class="contact-info-text">
+            <p>პროგრამა “ჩვენი სოკარი” იწყება კომპანიის ინიციატივის ფარგლებში, ჩვენი კომპანიის მომსახურეობის ეფექტურობისა და ხარისხის გაუმჯობესების პროცესში  თანამშრომელთა უფრო აქტიური ჩართულობის მიზნით. შემოთავაზებები, რეკომენდაციები და ინოვაციები შეიძლება ეხებოდეს კომპანიის ყველა სფეროს. ინიციატივების განხორციელების შემთხვევაში, ინოვატორებს მატერიალური ჯილდოები ელოდებათ. პროგრამა ასევე ხელს შეუწყობს ადამიანური რესურსების პოტენციალის გამოვლინებასა და თანამშრომელთა შემდგომ კარიერულ ზრდას.
+            </p>
+        </div>
+        <div class="contact-form-block">
+            <form class="contact-form"  [formGroup]="form" (ngSubmit)="onSubmit()">
+          
+                <div class="input-block">
+                    <label>განმცხადებლის სახელი, გვარი <span style="color:red;">*</span></label>
+                    <input formControlName="Name"/>
+                </div>
+                <div class="input-block">
+                    <label>თანამდებობა და სამუშაო ადგილი <span style="color:red;">*</span></label>
+                    <input formControlName="Workplace"/>
+                </div>
+                <div class="input-block">
+                    <label>ტელეფონის ნომერი <span style="color:red;">*</span></label>
+                    <input formControlName="PhoneNumber"/>
+                </div>
+                <div class="input-block">
+                    <label>იდეის თანაავტორების გვარები (თუ არიან)</label>
+                    <input formControlName="CoauthorsSurname"/>
+                </div>
+                <div class="text-area-block">
+                    <div class="input-block">
+                        <label>პრობლემის მოკლე აღწერა <span style="color:red;">*</span></label>
+                        <textarea formControlName="Problem"></textarea>
+                    </div>
+                    <div class="input-block">
+                        <label>პრობლემის გადაჭრის მეთოდი <span style="color:red;">*</span></label>
+                        <textarea formControlName="ProblemSolvingMethod"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit">Send</button>
+               
+                    <!-- <p style="color:@messageColor; margin: 0;width: 100%;text-align: center;margin-top: 15px;">@message</p>
+                    <div class="preloader-block">
+                        
+                </div>  -->
+            
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+<router-outlet></router-outlet>

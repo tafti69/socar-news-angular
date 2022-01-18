@@ -1,0 +1,107 @@
+.multi-lang, .flex-row-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.admin-ge, .admin-az, .g {
+    width: 100%;
+    margin: 0 10px;
+}
+
+.input-block {
+    background: #EFEFEF;
+    border: 1px solid #B1B1B1;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 100%;
+    height: 45px;
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-top: 10px;
+    width: 100%;
+    
+}
+
+.text-area-block {
+    width: 100%;
+    /* height: 135px; */
+    height: 100px;
+    left: 145px;
+    top: 409px;
+    background: #EFEFEF;
+    border: 1px solid #B1B1B1;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.admin-btn {
+    width: 100%;
+    background: #000;
+    color: white;
+    height: 50px;
+    border: none;
+    margin: 2rem 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    &:hover {
+      transform: scale(0.99);
+    }
+    &:active {
+      transform: scale(1.01);
+    }
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+}
+
+.button-wrapper span.label {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  width: 100%;
+  border: 2px dotted #222222;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #131313;
+  padding: 10px 0;
+  text-transform:uppercase;
+  font-size:16px;
+}
+
+#upload {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.refresh {
+  border: 1px solid #121212;
+  border-radius: 100%;
+  width: 33px; 
+  height: 33px;
+  cursor: pointer;
+}
+
+
