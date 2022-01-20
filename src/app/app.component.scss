@@ -1,0 +1,19 @@
+.success-msg {
+    margin: 10px auto; width: 100%; text-align: center;
+    color: green;
+    background-color: rgb(174, 255, 174);
+    border: 1px solid green;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.error-msg {
+    margin: 10px auto;
+     width: 100%; 
+     text-align: center;
+    color: red;
+    background-color: rgb(255, 214, 214);
+    border: 1px solid red;
+    border-radius: 8px;
+    padding: 10px 0;
+}

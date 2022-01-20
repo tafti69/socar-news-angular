@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators} from '@angular/forms';
+import { Contact } from './Models/Contact';
+import { ServicesService } from './services.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,16 @@ export class AppComponent implements OnInit {
 
   form!:FormGroup;
   show = false;
-
-  
+  isLoading: boolean = false;
+  success: boolean = false;
+  errorMsg: boolean = false;
+  /**
+   *
+   */
+  constructor(private service: ServicesService) {
+    
+    
+  }
 
   ngOnInit(): void {
       
@@ -58,8 +68,37 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
+    if(!this.form.valid) {
+      this.errorMsg = true;
+    }
+    if(this.form.valid) {
+      var obj = new Contact();
+      var value = this.form.value;
+      obj.name=value.Name;
+      obj.coauthorsSurname = value.CoauthorsSurname;
+      obj.phoneNumber = value.PhoneNumber;
+      obj.problem = value.Problem;
+      obj.workplace=value.Workplace;
+      obj.problemSolvingMethod = value.ProblemSolvingMethod;
+      this.isLoading = true;
+      this.service.contactUs(obj).subscribe(res=> {
+        console.log(res);
+        this.isLoading = false;
+        this.success = true;
+        setTimeout(()=> {
+          this.show = false;
+          this.success = false;
+          this.form.reset();
+        }, 3000)
+      });
+    }
+
     
-    
+  }
+
+  resetForm() {
+    this.form.reset();
+    this.errorMsg = false;
   }
  
 }

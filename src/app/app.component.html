@@ -13,7 +13,7 @@
 <div *ngIf="show" class="contact-us-page">
     <div class="form-heading">
         <h3>Your Ideas</h3>
-        <div style="cursor: pointer;" class="close" (click)="show = false">x</div>
+        <div style="cursor: pointer;" class="close" (click)="show = false"><svg (click)="resetForm()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></div>
     </div>
     <div class="inModal">
         <div class="contact-info-text">
@@ -50,12 +50,10 @@
                     </div>
                 </div>
 
-                <button type="submit">Send</button>
+                <button type="submit"><div style="width: 24px; height: 24px;" *ngIf="isLoading" class="loader"></div> Send</button>
                
-                    <!-- <p style="color:@messageColor; margin: 0;width: 100%;text-align: center;margin-top: 15px;">@message</p>
-                    <div class="preloader-block">
-                        
-                </div>  -->
+                    <p *ngIf="success" class="success-msg">Your message has successfully sent.</p>
+                    <p *ngIf="errorMsg" class="error-msg">Fill in the forms.</p>
             
             </form>
         </div>

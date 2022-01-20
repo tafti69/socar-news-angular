@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SignInModel } from './login/SignInModel';
 import { AuthToken } from './Models/AuthToken';
+import { Contact } from './Models/Contact';
 import { News } from './Models/News';
 import { NewsDTO } from './Models/NewsDTO';
 
@@ -88,5 +89,10 @@ export class ServicesService {
     this.refreshToken();
     var delUrl = this.url + `news/delete/${index}`;
     return this.httpClient.delete<any>(delUrl);
+  }
+
+  contactUs(obj:Contact){
+    var contactUrl = this.url + 'news/sendemail';
+    return this.httpClient.post(contactUrl,obj);
   }
 }

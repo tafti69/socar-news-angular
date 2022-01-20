@@ -1,24 +1,44 @@
 <div class="form-block">
-    <form [formGroup]="form" (ngSubmit)="onHandleSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onHandleSubmit()" novalidate>
         <div class="multi-lang">
             <div class="admin-ge">
                 <div class="form-group">
                     <label for="name">Heading AZ <span style="color:red;">*</span></label>
                     <input id="HeadingAZ" formControlName="HeadingAZ" class="input-block"/>
+                    <div *ngIf="form.controls['HeadingAZ'].invalid && (form.controls['HeadingAZ'].dirty || form.controls['HeadingAZ'].touched)">
+                        <small style="color: red;" *ngIf="form.controls['HeadingAZ'].errors.required">
+                            This field is required
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="name">Content AZ <span style="color:red;">*</span></label>
                     <textarea id="ContentAZ" formControlName="ContentAZ" class="text-area-block"></textarea>
+                    <div *ngIf="form.controls['ContentAZ'].invalid  && (form.controls['ContentAZ'].dirty || form.controls['ContentAZ'].touched)">
+                        <small style="color: red;" *ngIf="form.controls['ContentAZ'].errors.required">
+                            This field is required
+                        </small>
+                    </div>
                 </div>
             </div>
             <div class="admin-az">
                 <div class="form-group">
                     <label for="name">Heading KA <span style="color:red;">*</span></label>
-                    <input id="HeadingAZ" formControlName="HeadingGE" class="input-block" />
+                    <input id="HeadingGE" formControlName="HeadingGE" class="input-block" />
+                    <div *ngIf="form.controls['HeadingGE'].invalid && (form.controls['HeadingGE'].dirty || form.controls['HeadingGE'].touched)">
+                        <small style="color: red;" *ngIf="form.controls['HeadingGE'].errors.required">
+                            This field is required
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="name">Content KA <span style="color:red;">*</span></label>
                     <textarea id="ContentKA" formControlName="ContentGE" class="text-area-block"></textarea>
+                    <div *ngIf="form.controls['ContentGE'].invalid && (form.controls['ContentGE'].dirty || form.controls['ContentGE'].touched)">
+                        <small style="color: red;" *ngIf="form.controls['ContentGE'].errors.required">
+                            This field is required
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,13 +51,18 @@
               </div>
               <div>{{form.value.ImageURL}}</div>
         </div>
+        <div *ngIf="form.controls['ImageURL'].invalid && (form.controls['ImageURL'].dirty || form.controls['ImageURL'].touched)">
+            <small style="color: red;" *ngIf="form.controls['ImageURL'].errors.required">
+                This field is required
+            </small>
+        </div>
        <div class="flex-row-block">
-        <button [disabled]="!form.valid" type="submit" class="admin-btn">{{buttonState ? 'Update' : 'Create'}}</button>
+        <button type="submit" class="admin-btn">{{buttonState ? 'Update' : 'Create'}}</button>
         <div (click)="refreshForm()" class="refresh"><img src="/assets/bx-refresh.svg" alt=""></div>
        </div>
-        <div class="error-msg">
-<!--          
-            <p *ngIf="!form.valid" class="err-msg" style="color:red;">Error</p> -->
+        <div style="width: 100%; display: flex; justify-content: center;">
+         
+            <p *ngIf="!form.valid" style="color:red; margin: 0 auto;">{{errorMsg}}</p>
             
         </div>
     </form>

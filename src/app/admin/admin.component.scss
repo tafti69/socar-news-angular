@@ -41,7 +41,7 @@
 
 .admin-btn {
     width: 100%;
-    background: #000;
+    background-color: rgb(23, 29, 26);
     color: white;
     height: 50px;
     border: none;
@@ -50,7 +50,7 @@
     cursor: pointer;
     transition: 0.2s ease-out;
     &:hover {
-      transform: scale(0.99);
+      background-color: rgb(49, 51, 50);
     }
     &:active {
       transform: scale(1.01);
