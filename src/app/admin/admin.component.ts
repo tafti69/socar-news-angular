@@ -98,6 +98,13 @@ export class AdminComponent implements OnInit {
   }
 
   updateNews(item: any, i: any) {
+    this.form = new FormGroup({
+      HeadingAZ: new FormControl('', Validators.required),
+      HeadingGE: new FormControl('', Validators.required),
+      ContentAZ: new FormControl('', Validators.required),
+      ContentGE: new FormControl('', Validators.required),
+      ImageURL: new FormControl(''),
+    })
     this.isLoading = true;
     this.service.getAdminNews(i).subscribe(x=>{
       this.form.patchValue({
@@ -107,6 +114,7 @@ export class AdminComponent implements OnInit {
         ContentAZ: x.azeDescription,
         ContentGE: x.kaDescription,
     })
+    
     this.id=i;
     this.buttonState = true;
     this.scrollTop();
@@ -126,6 +134,13 @@ export class AdminComponent implements OnInit {
   refreshForm() {
     this.form.reset();
     this.buttonState = false;
+    this.form = new FormGroup({
+      HeadingAZ: new FormControl('', Validators.required),
+      HeadingGE: new FormControl('', Validators.required),
+      ContentAZ: new FormControl('', Validators.required),
+      ContentGE: new FormControl('', Validators.required),
+      ImageURL: new FormControl('', Validators.required),
+    })
   }
 
   deleteNews(id: any) {

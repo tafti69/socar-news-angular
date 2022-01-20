@@ -61,9 +61,7 @@
         <div (click)="refreshForm()" class="refresh"><img src="/assets/bx-refresh.svg" alt=""></div>
        </div>
         <div style="width: 100%; display: flex; justify-content: center;">
-         
-            <p *ngIf="!form.valid" style="color:red; margin: 0 auto;">{{errorMsg}}</p>
-            
+            <p *ngIf="!form.valid" style="color:red; margin: 0 auto;">{{errorMsg}}</p>          
         </div>
     </form>
 </div>
