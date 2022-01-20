@@ -21,6 +21,7 @@ export class AdminComponent implements OnInit {
   news: News[] = [];
   buttonState: boolean = false;
   id:any;
+  errorMsg: string = "";
 
   ngOnInit(): void {
 
@@ -52,29 +53,33 @@ export class AdminComponent implements OnInit {
   }
 
   onHandleSubmit() {
-    if (!this.form.valid) { return; }
-    this.isLoading = true;
-    var value = this.form.value;
-    var obj = new NewsDTO();
-    obj.azeDescription = value.ContentAZ;
-    obj.azeTitle = value.HeadingAZ;
-    obj.kaDescription = value.ContentGE;
-    obj.kaTitle =value.HeadingGE;
-    obj.image=this.image;
-    obj.imageExtension=this.extension;
-   
-      if(this.buttonState){
-      this.service.update(this.id,obj).subscribe(x=>{
-        this.isLoading = false;
-        window.location.reload();
-      });
-      }
-      else{
-        this.service.createNews(obj).subscribe(x=>{
+    if(!this.form.valid) {
+      this.errorMsg = "Fill in the forms.";
+    }
+    if(this.form.valid) {
+      this.isLoading = true;
+      var value = this.form.value;
+      var obj = new NewsDTO();
+      obj.azeDescription = value.ContentAZ;
+      obj.azeTitle = value.HeadingAZ;
+      obj.kaDescription = value.ContentGE;
+      obj.kaTitle =value.HeadingGE;
+      obj.image=this.image;
+      obj.imageExtension=this.extension;
+    
+        if(this.buttonState){
+        this.service.update(this.id,obj).subscribe(x=>{
           this.isLoading = false;
           window.location.reload();
         });
-      }
+        }
+        else{
+          this.service.createNews(obj).subscribe(x=>{
+            this.isLoading = false;
+            window.location.reload();
+          });
+        }
+    }
     
     
   }
