@@ -214,6 +214,9 @@ header {
 
 .inModal {
     padding: 1rem;
+    @media(max-width: 768px) {
+        padding: 8px;
+    }
 }
 
 input {
@@ -230,12 +233,15 @@ input {
     background: rgb(252, 252, 252);
     border-radius: 12px;
     border: 1px solid #B1B1B1;
+    overflow-x: hidden;
+    overflow-y: auto;
     @media(max-width: 1131px) {
         width: 760px;
+        height: 94vh;
     }
     @media(max-width: 768px) {
-        width: 360px;
-        top: 70%;
+        width: 92vw;
+        height: 92vh;
     }
 }
 
@@ -307,10 +313,31 @@ input {
     outline: none;
     color: #FFFFFF;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .form-block {
     width: 80%;
     margin: 0 auto;
 
+}
+
+.success-msg {
+    margin: 10px auto; width: 100%; text-align: center;
+    color: green;
+    background-color: rgb(174, 255, 174);
+    border: 1px solid green;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.error-msg {
+    margin: 10px auto;
+     width: 100%; 
+     text-align: center;
+    color: rgb(247, 62, 62);
+    background-color: rgb(255, 214, 214);
+    border: 1px solid rgb(247, 62, 62);
+    border-radius: 6px;
+    padding: 10px 0;
 }

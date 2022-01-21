@@ -93,6 +93,7 @@ export class AdminComponent implements OnInit {
         if(base64!==null){
           this.image = base64?.split(',')[1];
           this.extension=`.${file.name.split('.')[1]}`;
+          
         }
     };
   }

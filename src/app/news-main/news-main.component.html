@@ -1,6 +1,6 @@
 <div class="body-container">
   <div *ngIf="isLoading" class="loader"></div>
-    <div *ngFor="let item of news; index as i;" class="container" [routerLink]="['/details', item.id]">
+    <div *ngFor="let item of news; index as i;" style="cursor: pointer;" class="container" [routerLink]="['/details', item.id]">
       <div class="image-container">
         <img src={{item.content[0].imageURL}}>
         <span class="date-time">{{item.content[0].createdAt}}</span>
@@ -10,5 +10,4 @@
           <p>{{item.content[0].description  | slice: 0:450}}<span>...</span></p>
         </div>
       </div>
-   
 </div>

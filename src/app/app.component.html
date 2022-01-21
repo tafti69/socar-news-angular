@@ -3,7 +3,7 @@
  <a [routerLink]="['/']"> <img src="/assets/aaa.svg" alt=""></a>
  <a [routerLink]="['/']"> <img src="/assets/ddd.png" alt=""></a>
   <div class="header-text">
-      <p (click)='showDialog()'>Contact Us</p>
+      <p (click)='showDialog()'>Your Ideas</p>
       <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span>
   </div>
  </div>

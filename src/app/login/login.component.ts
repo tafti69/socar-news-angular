@@ -26,17 +26,26 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    var model = new SignInModel();
-    model.userName = this.form.value.username;
-    model.password = this.form.value.password;
+    if(this.form.valid) {
+      var model = new SignInModel();
+      model.userName = this.form.value.username;
+      model.password = this.form.value.password;
+      
+    this.service.signIn(model).subscribe(x => {      
+      localStorage.setItem("userName", this.form.value.username);
+      localStorage.setItem("password", this.form.value.password);
+      localStorage.setItem("token", x.token);  
+      this.router.navigate(['/admin']);
+      }, 
+      (errorMessage) => {
+        console.log(errorMessage);
+        this.error = errorMessage;
+      });
     
-   this.service.signIn(model).subscribe(x => {      
-     localStorage.setItem("userName", this.form.value.username);
-     localStorage.setItem("password", this.form.value.password);
-     localStorage.setItem("token", x.token);  
-     this.router.navigate(['/admin']);
-    });
-    
-  }
+      }
+      else {
+        this.error = true;
+      }
+    }
 
 }

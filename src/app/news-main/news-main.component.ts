@@ -34,7 +34,4 @@ export class NewsMainComponent implements OnInit {
        this.isLoading = false;
       });
   }
- 
-
-
 }

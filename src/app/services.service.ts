@@ -12,55 +12,56 @@ import { NewsDTO } from './Models/NewsDTO';
 })
 export class ServicesService {
 
-   httpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json' ,
       'Authorization': `Bearer ${localStorage.getItem('token')}` ,
       'Accept' : 'application/json'
     })
   };
+
   url : string;
   token : string = "";
-  constructor(private httpClient:HttpClient) { 
-    
+
+  constructor(private httpClient:HttpClient) {    
     this.url = "https://socarapi.socarnews.site/api/";
-   this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json' ,
-        'Authorization': `bearer ${localStorage.getItem('token')}` ,
-        'Accept' : 'application/json'
-      })
-    };
+    this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json' ,
+          'Authorization': `bearer ${localStorage.getItem('token')}` ,
+          'Accept' : 'application/json'
+        })
+      };
   }
 
-  signIn(model:SignInModel): Observable<AuthToken> {
+  signIn(model: SignInModel): Observable<AuthToken> {
     var signInUrl = this.url + "auth/signin";
-    
     localStorage.setItem("expiration", (Date.now()+ 11*3600000).toString());
     return this.httpClient.post<AuthToken>(signInUrl,model);
   }
+
+
   refreshToken(){
     var model = new SignInModel();
     model.userName = localStorage.getItem("userName") ?? "";
     model.password = localStorage.getItem("password") ?? "";
     var signInUrl = this.url + "auth/signin";
-    this.httpClient.post<AuthToken>(signInUrl,model).subscribe(x=>
+    this.httpClient.post<AuthToken>(signInUrl,model).subscribe(x =>
       {
         localStorage.setItem("token", x.token);
         localStorage.setItem("expiration", (Date.now()+ 11*3600000).toString());
       }
-      );
-  
+    );
   } 
 
   getNews(id:string, type:string): Observable<News[]>{
     var newsUrl = this.url + `News/Get?Id=${id}&Type=${type}`;
     return this.httpClient.get<News[]>(newsUrl);
   }
+
+
   getAdminNews(id:any) : Observable<NewsDTO>{
-    var adminNewsUrl = this.url + `news/GetAdminNewns/${id}`;
-    console.log(adminNewsUrl);
-    
+    var adminNewsUrl = this.url + `news/GetAdminNewns/${id}`;   
     return this.httpClient.get<NewsDTO>(adminNewsUrl);
   }
 
@@ -79,7 +80,7 @@ export class ServicesService {
 
 
   update(id:any,dto:NewsDTO){
-   this.refreshToken();
+    this.refreshToken();
     var createUrl = this.url + `news/update/${id}`;
     return this.httpClient.put(createUrl, dto);
   }
@@ -95,4 +96,5 @@ export class ServicesService {
     var contactUrl = this.url + 'news/sendemail';
     return this.httpClient.post(contactUrl,obj);
   }
+
 }
