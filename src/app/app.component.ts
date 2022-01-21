@@ -15,13 +15,8 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false;
   success: boolean = false;
   errorMsg: boolean = false;
-  /**
-   *
-   */
-  constructor(private service: ServicesService) {
-    
-    
-  }
+
+  constructor(private service: ServicesService) {  }
 
   ngOnInit(): void {
       
@@ -33,7 +28,9 @@ export class AppComponent implements OnInit {
         Problem: new FormControl('', Validators.required),
         ProblemSolvingMethod: new FormControl('', Validators.required),
       })
+
       var lang = localStorage.getItem("lang");
+
       if(lang===null || lang === "AZE"){
         this.langButtons[1].isClicked=true;
         this.langButtons[0].isClicked=false;
@@ -56,9 +53,11 @@ export class AppComponent implements OnInit {
     button.isClicked = true;
     if(this.langButtons[0].isClicked){
       localStorage.setItem("lang","KA");
+      
     }
     else{
       localStorage.setItem("lang","AZE");
+      
     }
     window.location.reload();
   }

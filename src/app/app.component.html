@@ -1,56 +1,73 @@
 <header>
  <div class="header-container">
- <a [routerLink]="['/']"> <img src="/assets/aaa.svg" alt=""></a>
- <a [routerLink]="['/']"> <img src="/assets/ddd.png" alt=""></a>
+ <a [routerLink]="['/']"> <img class="img1" src="/assets/aaa.svg" alt=""></a>
+ <a [routerLink]="['/']"> <img class="img2" src="/assets/ddd.png" alt=""></a>
   <div class="header-text">
-      <p (click)='showDialog()'>Your Ideas</p>
+      <p (click)='showDialog()' *ngIf="langButtons[0].isClicked">თქვენი იდეები</p>
+      <p (click)='showDialog()' *ngIf="langButtons[1].isClicked">Sizin Idealar</p>
       <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span>
   </div>
  </div>
 </header>
 
+<div *ngIf="show" id="page-mask"></div>
 
 <div *ngIf="show" class="contact-us-page">
     <div class="form-heading">
-        <h3>Your Ideas</h3>
+        <h3 *ngIf="langButtons[0].isClicked">თქვენი იდეები</h3>
+        <h3 *ngIf="langButtons[1].isClicked">Sizin Idealar</h3>
         <div style="cursor: pointer;" class="close" (click)="show = false"><svg (click)="resetForm()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></div>
     </div>
     <div class="inModal">
         <div class="contact-info-text">
-            <p>პროგრამა “ჩვენი სოკარი” იწყება კომპანიის ინიციატივის ფარგლებში, ჩვენი კომპანიის მომსახურეობის ეფექტურობისა და ხარისხის გაუმჯობესების პროცესში  თანამშრომელთა უფრო აქტიური ჩართულობის მიზნით. შემოთავაზებები, რეკომენდაციები და ინოვაციები შეიძლება ეხებოდეს კომპანიის ყველა სფეროს. ინიციატივების განხორციელების შემთხვევაში, ინოვატორებს მატერიალური ჯილდოები ელოდებათ. პროგრამა ასევე ხელს შეუწყობს ადამიანური რესურსების პოტენციალის გამოვლინებასა და თანამშრომელთა შემდგომ კარიერულ ზრდას.
-            </p>
+            <p *ngIf="langButtons[0].isClicked">პროგრამა “ჩვენი სოკარი” იწყება კომპანიის ინიციატივის ფარგლებში, ჩვენი კომპანიის მომსახურეობის ეფექტურობისა და ხარისხის გაუმჯობესების პროცესში  თანამშრომელთა უფრო აქტიური ჩართულობის მიზნით. შემოთავაზებები, რეკომენდაციები და ინოვაციები შეიძლება ეხებოდეს კომპანიის ყველა სფეროს. ინიციატივების განხორციელების შემთხვევაში, ინოვატორებს მატერიალური ჯილდოები ელოდებათ. პროგრამა ასევე ხელს შეუწყობს ადამიანური რესურსების პოტენციალის გამოვლინებასა და თანამშრომელთა შემდგომ კარიერულ ზრდას.</p>
+            <p *ngIf="langButtons[1].isClicked">“Bizim SOCAR” proqramı əməkdaşlarımızı şirkətimizin xidmətlərinin səmərəliliyinin 
+                və keyfiyyətinin yüksəldilməsi prosesinə daha fəal cəlb etmək məqsədilə 
+                başlanmışdır. 
+                Aşağıdakı forma vasitəsilə şirkətin bütün fəaliyyət istiqamətlərinə dair öz təkliflərini,
+                tövsiyələrinizi və yeni ideyalarınızı bizə təqdim edə bilərsiniz. Həyata keçiriləcək 
+                ideyaların müəlliflərinin şirkət tərəfindən maddi mükafatlandırılması nəzərdə tutulur.
+                Proqramda iştirak həmçinin insan resursları potensialının aşkarlanmasına və 
+                işçilərimizin gələcək karyeralarında irəliləməsinə kömək edəcəkdir.</p>
         </div>
         <div class="contact-form-block">
             <form class="contact-form"  [formGroup]="form" (ngSubmit)="onSubmit()">
           
                 <div class="input-block">
-                    <label>განმცხადებლის სახელი, გვარი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[0].isClicked">განმცხადებლის სახელი, გვარი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[1].isClicked">Müraciətçinin adı/soyadı <span style="color:red;">*</span></label>
                     <input formControlName="Name"/>
                 </div>
                 <div class="input-block">
-                    <label>თანამდებობა და სამუშაო ადგილი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[0].isClicked">თანამდებობა და სამუშაო ადგილი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[1].isClicked">Vəzifəsi və iş yeri <span style="color:red;">*</span></label>
                     <input formControlName="Workplace"/>
                 </div>
                 <div class="input-block">
-                    <label>ტელეფონის ნომერი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[0].isClicked">ტელეფონის ნომერი <span style="color:red;">*</span></label>
+                    <label *ngIf="langButtons[1].isClicked">Telefon nömrəsi <span style="color:red;">*</span></label>
                     <input formControlName="PhoneNumber"/>
                 </div>
                 <div class="input-block">
-                    <label>იდეის თანაავტორების გვარები (თუ არიან)</label>
+                    <label *ngIf="langButtons[0].isClicked">იდეის თანაავტორების გვარები (თუ არიან)</label>
+                    <label *ngIf="langButtons[1].isClicked">İdeyanın həmmüəllifləri (əgər varsa)</label>
                     <input formControlName="CoauthorsSurname"/>
                 </div>
                 <div class="text-area-block">
                     <div class="input-block">
-                        <label>პრობლემის მოკლე აღწერა <span style="color:red;">*</span></label>
+                        <label *ngIf="langButtons[0].isClicked">პრობლემის მოკლე აღწერა <span style="color:red;">*</span></label>
+                        <label *ngIf="langButtons[1].isClicked">Problemin qısa təsviri <span style="color:red;">*</span></label>
                         <textarea formControlName="Problem"></textarea>
                     </div>
                     <div class="input-block">
-                        <label>პრობლემის გადაჭრის მეთოდი <span style="color:red;">*</span></label>
+                        <label *ngIf="langButtons[0].isClicked">პრობლემის გადაჭრის მეთოდი <span style="color:red;">*</span></label>
+                        <label *ngIf="langButtons[1].isClicked">Problemin həlli metodu <span style="color:red;">*</span></label>
                         <textarea formControlName="ProblemSolvingMethod"></textarea>
                     </div>
                 </div>
 
-                <button type="submit"><div style="width: 24px; height: 24px;" *ngIf="isLoading" class="loader"></div> Send</button>
+                <button  *ngIf="langButtons[0].isClicked" type="submit"><div style="width: 24px; height: 24px;" *ngIf="isLoading" class="loader"></div>გაგზავნა</button>
+                <button  *ngIf="langButtons[1].isClicked" type="submit"><div style="width: 24px; height: 24px;" *ngIf="isLoading" class="loader"></div>Göndərmək</button>
                
                     <p *ngIf="success" class="success-msg">Your message has successfully sent.</p>
                     <p *ngIf="errorMsg" class="error-msg">Fill in the forms.</p>
