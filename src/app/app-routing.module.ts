@@ -5,6 +5,7 @@ import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NewsMainComponent } from './news-main/news-main.component';
 import { NewsdetailsComponent } from './newsdetails/newsdetails.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,9 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
-  }
+  },
+  { path: '**', pathMatch: 'full', 
+        component: PagenotfoundComponent },
 ];
 
 @NgModule({

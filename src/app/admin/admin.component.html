@@ -49,13 +49,28 @@
                 </span>
                   <input type="file" name="upload" id="upload" class="upload-box" formControlName="ImageURL" (change)="handleUpload($event)" placeholder="Upload File"> 
               </div>
-              <div>{{form.value.ImageURL}}</div>
         </div>
         <div *ngIf="form.controls['ImageURL'].invalid && (form.controls['ImageURL'].dirty || form.controls['ImageURL'].touched)">
             <small style="color: red;" *ngIf="form.controls['ImageURL'].errors.required">
                 This field is required
             </small>
         </div>
+        <div *ngIf="image" style="display: flex;">
+            <image-cropper 
+                class="uploaded-image"
+                [imageChangedEvent]="imageChangedEvent" 
+                [maintainAspectRatio]="true" 
+                [aspectRatio]="4 / 3"
+                [resizeToWidth]="512" 
+                format="png" 
+                (imageCropped)="imageCropped($event)" 
+                (imageLoaded)="imageLoaded(croppedImage)"
+                (cropperReady)="cropperReady()" 
+                (loadImageFailed)="loadImageFailed()"></image-cropper>
+        <!-- <img *ngIf="image" class="uploaded-image" [src]="'data:image/jpg;base64,' + image" alt=""> -->
+        <img *ngIf="croppedImage" class="uploaded-image" [src]="croppedImage" alt="">
+        </div>
+        
        <div class="flex-row-block">
         <button type="submit" class="admin-btn">{{buttonState ? 'Update' : 'Create'}}</button>
         <div (click)="refreshForm()" class="refresh"><img src="/assets/bx-refresh.svg" alt=""></div>

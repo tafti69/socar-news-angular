@@ -31,15 +31,15 @@ export class AppComponent implements OnInit {
 
       var lang = localStorage.getItem("lang");
 
-      if(lang===null || lang === "AZE"){
-        this.langButtons[1].isClicked=true;
-        this.langButtons[0].isClicked=false;
-        localStorage.setItem("lang", "AZE");
-      }
-      else {
+      if(lang===null || lang === "KA"){
         this.langButtons[0].isClicked=true;
         this.langButtons[1].isClicked=false;
         localStorage.setItem("lang", "KA");
+      }
+      else {
+        this.langButtons[1].isClicked=true;
+        this.langButtons[0].isClicked=false;
+        localStorage.setItem("lang", "AZE");
       }
   }
 

@@ -11,6 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
     NewsdetailsComponent,
     NewsMainComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageCropperModule
   ],
   providers: [AuthGuard, {
     provide: HTTP_INTERCEPTORS,

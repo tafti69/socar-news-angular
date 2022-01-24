@@ -6,11 +6,13 @@
         <img src={{news.content[0].imageURL}} alt="">
         <span class="date-time">{{news.content[0].createdAt}}</span>
        </div>
+   
         <div class="text-container">
           <h1>{{news.content[0].title}}</h1>
-          <div *ngFor="let item of news.content[0].text">
+          <div style="margin-top: 8px;" *ngFor="let item of news.content[0].text">
             <p>{{item}}</p>
             <br/>
           </div>
     </div>
 </div>
+<div style="height: 80px"></div>

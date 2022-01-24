@@ -4,7 +4,7 @@
  <a [routerLink]="['/']"> <img class="img2" src="/assets/ddd.png" alt=""></a>
   <div class="header-text">
       <p (click)='showDialog()' *ngIf="langButtons[0].isClicked">თქვენი იდეები</p>
-      <p (click)='showDialog()' *ngIf="langButtons[1].isClicked">Sizin Idealar</p>
+      <p (click)='showDialog()' *ngIf="langButtons[1].isClicked">Ideyaniz Var?</p>
       <span *ngFor="let l of langButtons" [ngClass]="{'active': l.isClicked}" (click)="setActive(l)">{{l.text}}</span>
   </div>
  </div>
@@ -15,7 +15,7 @@
 <div *ngIf="show" class="contact-us-page">
     <div class="form-heading">
         <h3 *ngIf="langButtons[0].isClicked">თქვენი იდეები</h3>
-        <h3 *ngIf="langButtons[1].isClicked">Sizin Idealar</h3>
+        <h3 *ngIf="langButtons[1].isClicked">Ideyaniz Var?</h3>
         <div style="cursor: pointer;" class="close" (click)="show = false"><svg (click)="resetForm()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path></svg></div>
     </div>
     <div class="inModal">

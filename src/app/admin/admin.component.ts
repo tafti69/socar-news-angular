@@ -1,8 +1,9 @@
-import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { News } from '../Models/News';
 import { NewsDTO } from '../Models/NewsDTO';
 import { ServicesService } from '../services.service';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-admin',
@@ -11,9 +12,11 @@ import { ServicesService } from '../services.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private service: ServicesService, private elRef: ElementRef) { }
+  constructor(private service: ServicesService) { }
 
   image: any = "";
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
   isLoading: boolean = false;
   extension:any;
   form!: FormGroup;
@@ -80,23 +83,35 @@ export class AdminComponent implements OnInit {
           });
         }
     }
-    
-    
   }
-  handleUpload(event:any) {
+
+  handleUpload(event: any) {
+    this.imageChangedEvent = event;
     const file = event.target.files[0];
     const reader = new FileReader();
-  
     reader.readAsDataURL(file);
     reader.onload = () => {
         var base64 = reader.result?.toString();
         if(base64!==null){
           this.image = base64?.split(',')[1];
           this.extension=`.${file.name.split('.')[1]}`;
-          
         }
     };
   }
+  
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+
+  imageLoaded(image: LoadedImage) {
+    this.croppedImage = image;
+}
+cropperReady() {
+    // cropper ready
+}
+loadImageFailed() {
+    // show message
+}
 
   updateNews(item: any, i: any) {
     this.form = new FormGroup({
@@ -142,6 +157,8 @@ export class AdminComponent implements OnInit {
       ContentGE: new FormControl('', Validators.required),
       ImageURL: new FormControl('', Validators.required),
     })
+    this.croppedImage = '';
+    this.image = '';
   }
 
   deleteNews(id: any) {
