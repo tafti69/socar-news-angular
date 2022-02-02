@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit {
       {
        this.news=res;
        this.isLoading = false;
-      });
+      }); 
   }
 
   onHandleSubmit() {
@@ -95,12 +95,14 @@ export class AdminComponent implements OnInit {
         if(base64!==null){
           this.image = base64?.split(',')[1];
           this.extension=`.${file.name.split('.')[1]}`;
+         
         }
     };
   }
   
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
+    
   }
 
   imageLoaded(image: LoadedImage) {
